@@ -129,8 +129,19 @@ export default function ShowSchools() {
                             alt={school.name}
                             className="w-full h-48 object-cover"
                           />
+                        ) : school.image.startsWith('http') || school.image.startsWith('https') ? (
+                          // Remote URL (Vercel Blob or any HTTP URL)
+                          <img
+                            src={school.image}
+                            alt={school.name}
+                            className="w-full h-48 object-cover"
+                            onError={(e) => {
+                              console.error('Image failed to load:', school.image);
+                              e.target.style.display = 'none';
+                            }}
+                          />
                         ) : (
-                          // Regular image (local or remote URL)
+                          // Local path (development)
                           <Image
                             src={school.image}
                             alt={school.name}
