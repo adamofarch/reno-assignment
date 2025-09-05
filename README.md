@@ -22,10 +22,7 @@ A comprehensive school management web application built with Next.js and MySQL, 
 
 ## Database Schema
 
-The application uses a MySQL database with the following table structure:
-
 ```sql
-CREATE TABLE schools (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name TEXT NOT NULL,
   address TEXT NOT NULL,
@@ -35,7 +32,6 @@ CREATE TABLE schools (
   image TEXT,
   email_id VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 ```
 
 ## Getting Started
@@ -50,8 +46,8 @@ CREATE TABLE schools (
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd school-management
+git clone https://github.com/adamofarch/reno-assignment
+cd reno-assignment
 ```
 
 2. Install dependencies:
@@ -61,7 +57,7 @@ npm install
 
 3. Set up environment variables:
 ```bash
-cp .env.local.example .env.local
+cp .env-example .env.local
 ```
 
 4. Update the `.env.local` file with your MySQL credentials:
@@ -69,21 +65,16 @@ cp .env.local.example .env.local
 DB_HOST=localhost
 DB_USER=your_username
 DB_PASSWORD=your_password
-DB_NAME=schools_db
-DB_PORT=3306
+DB_NAME=your_db_name
+DB_PORT=your_db_port
 ```
 
-5. Create the MySQL database:
-```sql
-CREATE DATABASE schools_db;
-```
-
-6. Run the development server:
+5. Run the development server:
 ```bash
 npm run dev
 ```
 
-7. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Pages
 
@@ -138,55 +129,9 @@ Retrieves all schools from the database.
 └── package.json
 ```
 
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Add environment variables in Vercel dashboard
-4. Deploy
-
-### Other Platforms
-
-The application can be deployed on any platform that supports Next.js:
-- Netlify
-- Railway
-- DigitalOcean App Platform
-- AWS Amplify
-
-## Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DB_HOST` | MySQL host | localhost |
-| `DB_USER` | MySQL username | root |
-| `DB_PASSWORD` | MySQL password | (empty) |
-| `DB_NAME` | Database name | schools_db |
-| `DB_PORT` | MySQL port | 3306 |
-| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token (production only) | (empty) |
-| `NODE_ENV` | Environment (development/production) | development |
-
 ## Image Storage
 
 The application handles image storage differently based on the environment:
 
 - **Development**: Images are stored in `public/schoolImages/` folder locally
 - **Production**: Images are stored in Vercel Blob storage under `schoolImages/` folder
-
-This ensures the assignment requirement (images in folder) is met while being compatible with Vercel's serverless environment.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
-
-## Support
-
-For support, please open an issue in the GitHub repository.
