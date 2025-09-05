@@ -95,7 +95,7 @@ export default function AddSchool() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* School Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-black mb-2">
                   School Name *
                 </label>
                 <input
@@ -105,7 +105,7 @@ export default function AddSchool() {
                     required: 'School name is required',
                     minLength: { value: 2, message: 'Name must be at least 2 characters' }
                   })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                   placeholder="Enter school name"
                 />
                 {errors.name && (
@@ -115,7 +115,7 @@ export default function AddSchool() {
 
               {/* Address */}
               <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="address" className="block text-sm font-medium text-black mb-2">
                   Address *
                 </label>
                 <textarea
@@ -125,7 +125,7 @@ export default function AddSchool() {
                     minLength: { value: 10, message: 'Address must be at least 10 characters' }
                   })}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                   placeholder="Enter complete address"
                 />
                 {errors.address && (
@@ -136,7 +136,7 @@ export default function AddSchool() {
               {/* City and State */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="city" className="block text-sm font-medium text-black mb-2">
                     City *
                   </label>
                   <input
@@ -146,7 +146,7 @@ export default function AddSchool() {
                       required: 'City is required',
                       minLength: { value: 2, message: 'City must be at least 2 characters' }
                     })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                     placeholder="Enter city"
                   />
                   {errors.city && (
@@ -155,7 +155,7 @@ export default function AddSchool() {
                 </div>
 
                 <div>
-                  <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="state" className="block text-sm font-medium text-black mb-2">
                     State *
                   </label>
                   <input
@@ -165,7 +165,7 @@ export default function AddSchool() {
                       required: 'State is required',
                       minLength: { value: 2, message: 'State must be at least 2 characters' }
                     })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                     placeholder="Enter state"
                   />
                   {errors.state && (
@@ -177,7 +177,7 @@ export default function AddSchool() {
               {/* Contact and Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="contact" className="block text-sm font-medium text-black mb-2">
                     Contact Number *
                   </label>
                   <input
@@ -190,7 +190,7 @@ export default function AddSchool() {
                         message: 'Please enter a valid phone number'
                       }
                     })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                     placeholder="Enter contact number"
                   />
                   {errors.contact && (
@@ -199,7 +199,7 @@ export default function AddSchool() {
                 </div>
 
                 <div>
-                  <label htmlFor="email_id" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email_id" className="block text-sm font-medium text-black mb-2">
                     Email ID *
                   </label>
                   <input
@@ -212,7 +212,7 @@ export default function AddSchool() {
                         message: 'Please enter a valid email address'
                       }
                     })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                     placeholder="Enter email address"
                   />
                   {errors.email_id && (
@@ -223,7 +223,7 @@ export default function AddSchool() {
 
               {/* Image Upload */}
               <div>
-                <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="image" className="block text-sm font-medium text-black mb-2">
                   School Image
                 </label>
                 <input
@@ -232,7 +232,7 @@ export default function AddSchool() {
                   accept="image/*"
                   {...register('image')}
                   onChange={handleImageChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
                 />
                 {imagePreview && (
                   <div className="mt-4">

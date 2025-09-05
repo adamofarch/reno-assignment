@@ -6,14 +6,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Initialize database
     await initDatabase();
     
     const conn = await getConnection();
     
     // Fetch all schools
     const [rows] = await conn.execute(
-      'SELECT id, name, address, city, state, image FROM schools ORDER BY created_at DESC'
+      'SELECT id, name, address, city, state, image FROM schools ORDER BY id DESC'
     );
 
     res.status(200).json({ schools: rows });
