@@ -1,22 +1,25 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { put } from '@vercel/blob';
 import { getConnection, initDatabase } from '../../../lib/db';
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadPath = path.join(process.cwd(), 'public', 'schoolImages');
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath, { recursive: true });
-    }
-    cb(null, uploadPath);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+// Configure multer for file uploads based on environment
+const storage = process.env.NODE_ENV === 'production' 
+  ? multer.memoryStorage() // Use memory storage for production (Vercel)
+  : multer.diskStorage({   // Use disk storage for development
+      destination: function (req, file, cb) {
+        const uploadPath = path.join(process.cwd(), 'public', 'schoolImages');
+        if (!fs.existsSync(uploadPath)) {
+          fs.mkdirSync(uploadPath, { recursive: true });
+        }
+        cb(null, uploadPath);
+      },
+      filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+      }
+    });
 
 const upload = multer({ 
   storage: storage,
@@ -75,8 +78,29 @@ export default async function handler(req, res) {
 
       const conn = await getConnection();
       
-      // Get image path if uploaded
-      const imagePath = req.file ? `/schoolImages/${req.file.filename}` : null;
+      // Handle image upload based on environment
+      let imagePath = null;
+      if (req.file) {
+        if (process.env.NODE_ENV === 'production') {
+          // Production: Use Vercel Blob storage
+          try {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            const filename = `schoolImages/image-${uniqueSuffix}${path.extname(req.file.originalname)}`;
+            
+            const blob = await put(filename, req.file.buffer, {
+              access: 'public',
+            });
+            
+            imagePath = blob.url;
+          } catch (error) {
+            console.error('Error uploading image to Vercel Blob:', error);
+            return res.status(500).json({ message: 'Error uploading image' });
+          }
+        } else {
+          // Development: Use local file system
+          imagePath = `/schoolImages/${req.file.filename}`;
+        }
+      }
       
       // Insert school data
       const [result] = await conn.execute(

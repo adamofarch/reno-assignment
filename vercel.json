@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "pages/api/schools/add.js": {
+      "maxDuration": 30
+    }
+  }
+}

@@ -164,6 +164,17 @@ The application can be deployed on any platform that supports Next.js:
 | `DB_PASSWORD` | MySQL password | (empty) |
 | `DB_NAME` | Database name | schools_db |
 | `DB_PORT` | MySQL port | 3306 |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token (production only) | (empty) |
+| `NODE_ENV` | Environment (development/production) | development |
+
+## Image Storage
+
+The application handles image storage differently based on the environment:
+
+- **Development**: Images are stored in `public/schoolImages/` folder locally
+- **Production**: Images are stored in Vercel Blob storage under `schoolImages/` folder
+
+This ensures the assignment requirement (images in folder) is met while being compatible with Vercel's serverless environment.
 
 ## Contributing
 

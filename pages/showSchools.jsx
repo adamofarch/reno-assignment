@@ -122,13 +122,23 @@ export default function ShowSchools() {
                     {/* School Image */}
                     <div className="aspect-w-16 aspect-h-12 bg-gray-200">
                       {school.image ? (
-                        <Image
-                          src={school.image}
-                          alt={school.name}
-                          width={300}
-                          height={200}
-                          className="w-full h-48 object-cover"
-                        />
+                        school.image.startsWith('data:') ? (
+                          // Base64 image (fallback)
+                          <img
+                            src={school.image}
+                            alt={school.name}
+                            className="w-full h-48 object-cover"
+                          />
+                        ) : (
+                          // Regular image (local or remote URL)
+                          <Image
+                            src={school.image}
+                            alt={school.name}
+                            width={300}
+                            height={200}
+                            className="w-full h-48 object-cover"
+                          />
+                        )
                       ) : (
                         <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
                           <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
