@@ -1,40 +1,181 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# School Management System
+
+A comprehensive school management web application built with Next.js and MySQL, featuring school registration and directory browsing capabilities.
+
+## Features
+
+- **Add Schools**: Complete form with validation for adding new schools
+- **Browse Schools**: Ecommerce-style directory to view all schools
+- **Image Upload**: Support for school image uploads
+- **Responsive Design**: Works seamlessly on mobile and desktop
+- **Form Validation**: Email and phone number validation
+- **Modern UI**: Clean, professional interface built with Tailwind CSS
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React 19, Tailwind CSS
+- **Backend**: Next.js API Routes
+- **Database**: MySQL
+- **Form Handling**: React Hook Form
+- **File Upload**: Multer
+- **Styling**: Tailwind CSS
+
+## Database Schema
+
+The application uses a MySQL database with the following table structure:
+
+```sql
+CREATE TABLE schools (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name TEXT NOT NULL,
+  address TEXT NOT NULL,
+  city TEXT NOT NULL,
+  state TEXT NOT NULL,
+  contact VARCHAR(15) NOT NULL,
+  image TEXT,
+  email_id VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- MySQL 8.0+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd school-management
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+4. Update the `.env.local` file with your MySQL credentials:
+```
+DB_HOST=localhost
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_NAME=schools_db
+DB_PORT=3306
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+5. Create the MySQL database:
+```sql
+CREATE DATABASE schools_db;
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+7. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Home Page (`/`)
+- Landing page with navigation
+- Overview of features
+- Quick access to add/view schools
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Add School (`/addSchool`)
+- Form to add new schools
+- Comprehensive validation
+- Image upload functionality
+- Responsive design
 
-## Deploy on Vercel
+### Show Schools (`/showSchools`)
+- Grid layout displaying all schools
+- Ecommerce-style card design
+- School name, address, city, and image display
+- Responsive grid system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## API Endpoints
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### POST `/api/schools/add`
+Adds a new school to the database.
+
+**Body**: FormData with school information and optional image file.
+
+**Response**: Success message with school ID.
+
+### GET `/api/schools/get`
+Retrieves all schools from the database.
+
+**Response**: Array of school objects.
+
+## File Structure
+
+```
+├── pages/
+│   ├── api/
+│   │   └── schools/
+│   │       ├── add.js
+│   │       └── get.js
+│   ├── addSchool.jsx
+│   ├── showSchools.jsx
+│   └── index.js
+├── lib/
+│   └── db.js
+├── public/
+│   └── schoolImages/
+├── styles/
+│   └── globals.css
+└── package.json
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy
+
+### Other Platforms
+
+The application can be deployed on any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `DB_HOST` | MySQL host | localhost |
+| `DB_USER` | MySQL username | root |
+| `DB_PASSWORD` | MySQL password | (empty) |
+| `DB_NAME` | Database name | schools_db |
+| `DB_PORT` | MySQL port | 3306 |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support, please open an issue in the GitHub repository.
